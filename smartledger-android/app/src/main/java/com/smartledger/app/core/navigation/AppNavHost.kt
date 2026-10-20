@@ -22,6 +22,8 @@ import com.smartledger.app.feature.orders.presentation.ui.CreateOrderScreen
 import com.smartledger.app.feature.orders.presentation.ui.OrderDetailScreen
 import com.smartledger.app.feature.orders.presentation.ui.OrderListScreen
 import com.smartledger.app.feature.parties.presentation.ui.CreatePartyScreen
+import com.smartledger.app.feature.inventory.presentation.ui.InventorySummaryScreen
+import com.smartledger.app.feature.inventory.presentation.ui.MovementHistoryScreen
 import com.smartledger.app.feature.parties.presentation.ui.PartyDetailScreen
 import com.smartledger.app.feature.parties.presentation.ui.PartyListScreen
 import com.smartledger.app.feature.procurement.presentation.ui.CreatePurchaseScreen
@@ -199,10 +201,21 @@ fun AppNavHost() {
                 )
             }
 
+            // ── Phase 6: Inventory & Material Stock (Read-Only) ────────────
+            composable(AppRoute.INVENTORY_SUMMARY) {
+                InventorySummaryScreen(
+                    onNavigateBack = { navController.popBackStack() },
+                    onNavigateToMovements = { navController.navigate(AppRoute.MOVEMENT_HISTORY) }
+                )
+            }
+            composable(AppRoute.MOVEMENT_HISTORY) {
+                MovementHistoryScreen(
+                    onNavigateBack = { navController.popBackStack() }
+                )
+            }
+
             // ── Sub-routes (added to graph so they can be navigated to) ───
-            // These will be fully implemented in Phases 6-12
-            composable(AppRoute.INVENTORY_SUMMARY) { /* Phase 6 */ }
-            composable(AppRoute.MOVEMENT_HISTORY) { /* Phase 6 */ }
+            // These will be fully implemented in Phases 8-12
             composable(AppRoute.PRODUCTION_LIST) { /* Phase 8 */ }
             composable(AppRoute.OUTSOURCING_LIST) { /* Phase 9 */ }
             composable(AppRoute.WORK_RECORD_LIST) { /* Phase 10 */ }

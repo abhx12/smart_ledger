@@ -91,8 +91,8 @@ fun MoreScreen(
             title = "Inventory & Stock",
             subtitle = "Raw materials, in-process goods and stock movement ledger",
             icon = Icons.Default.Inventory,
-            badge = "Phase 6",
-            badgeColor = Color(0xFF64748B),
+            badge = "ACTIVE",
+            badgeColor = GoldPrimary,
             onClick = onNavigateToInventory
         )
 

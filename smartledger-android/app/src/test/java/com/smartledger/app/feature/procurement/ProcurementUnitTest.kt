@@ -160,7 +160,7 @@ class FakePurchaseApiService : PurchaseApiService {
             rejectedWeightKg = request.rejectedWeightKg,
             notes = request.notes
         )
-        val idx = samplePurchases.indexOfFirst { it.id == purchaseId }
+        val idx = samplePurchases.indexOfFirst { it.id == id }
         if (idx != -1) {
             val curr = samplePurchases[idx]
             val newReceived = curr.receivedWeightKg + receipt.acceptedWeightKg
