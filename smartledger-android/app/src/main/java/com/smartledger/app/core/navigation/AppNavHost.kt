@@ -139,6 +139,7 @@ fun AppNavHost() {
             }
             composable(AppRoute.CREATE_ORDER) {
                 CreateOrderScreen(
+                    onNavigateBack = { navController.popBackStack() },
                     onOrderCreated = { navController.popBackStack() }
                 )
             }
