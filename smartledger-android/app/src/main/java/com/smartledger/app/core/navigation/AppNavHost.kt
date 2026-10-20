@@ -24,6 +24,11 @@ import com.smartledger.app.feature.orders.presentation.ui.OrderListScreen
 import com.smartledger.app.feature.parties.presentation.ui.CreatePartyScreen
 import com.smartledger.app.feature.parties.presentation.ui.PartyDetailScreen
 import com.smartledger.app.feature.parties.presentation.ui.PartyListScreen
+import com.smartledger.app.feature.procurement.presentation.ui.CreatePurchaseScreen
+import com.smartledger.app.feature.procurement.presentation.ui.PurchaseDetailScreen
+import com.smartledger.app.feature.procurement.presentation.ui.PurchaseListScreen
+import com.smartledger.app.feature.procurement.presentation.ui.RecordReceiptScreen
+
 
 /**
  * Root NavHost for the entire SmartLedger app.
@@ -155,6 +160,7 @@ fun AppNavHost() {
             // ── Bottom Nav: More ───────────────────────────────────────────
             composable(AppRoute.MORE) {
                 MoreScreen(
+                    onNavigateToProcurement = { navController.navigate(AppRoute.PURCHASE_LIST) },
                     onNavigateToInventory = { navController.navigate(AppRoute.INVENTORY_SUMMARY) },
                     onNavigateToProduction = { navController.navigate(AppRoute.PRODUCTION_LIST) },
                     onNavigateToOutsourcing = { navController.navigate(AppRoute.OUTSOURCING_LIST) },
@@ -163,9 +169,38 @@ fun AppNavHost() {
                 )
             }
 
+            // ── Phase 5: Silk Procurement ──────────────────────────────────
+            composable(AppRoute.PURCHASE_LIST) {
+                PurchaseListScreen(
+                    onNavigateToCreate = { navController.navigate(AppRoute.CREATE_PURCHASE) },
+                    onNavigateToDetail = { purchaseId -> navController.navigate(AppRoute.purchaseDetail(purchaseId)) }
+                )
+            }
+            composable(AppRoute.CREATE_PURCHASE) {
+                CreatePurchaseScreen(
+                    onNavigateBack = { navController.popBackStack() },
+                    onPurchaseCreated = { navController.popBackStack() }
+                )
+            }
+            composable(AppRoute.PURCHASE_DETAIL) { backStackEntry ->
+                val purchaseId = backStackEntry.arguments?.getString("purchaseId") ?: ""
+                PurchaseDetailScreen(
+                    purchaseId = purchaseId,
+                    onNavigateBack = { navController.popBackStack() },
+                    onNavigateToRecordReceipt = { id -> navController.navigate(AppRoute.recordReceipt(id)) }
+                )
+            }
+            composable(AppRoute.RECORD_RECEIPT) { backStackEntry ->
+                val purchaseId = backStackEntry.arguments?.getString("purchaseId") ?: ""
+                RecordReceiptScreen(
+                    purchaseId = purchaseId,
+                    onNavigateBack = { navController.popBackStack() },
+                    onReceiptRecorded = { navController.popBackStack() }
+                )
+            }
+
             // ── Sub-routes (added to graph so they can be navigated to) ───
-            // These will be fully implemented in Phases 5-12
-            composable(AppRoute.PURCHASE_LIST) { /* Phase 5 */ }
+            // These will be fully implemented in Phases 6-12
             composable(AppRoute.INVENTORY_SUMMARY) { /* Phase 6 */ }
             composable(AppRoute.MOVEMENT_HISTORY) { /* Phase 6 */ }
             composable(AppRoute.PRODUCTION_LIST) { /* Phase 8 */ }
