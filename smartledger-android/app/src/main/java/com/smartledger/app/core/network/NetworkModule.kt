@@ -25,9 +25,17 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(authInterceptor: AuthInterceptor): OkHttpClient {
+    fun provideGson(): com.google.gson.Gson = com.google.gson.Gson()
+
+    @Provides
+    @Singleton
+    fun provideOkHttpClient(
+        authInterceptor: AuthInterceptor,
+        tokenAuthenticator: com.smartledger.app.core.auth.TokenAuthenticator
+    ): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(authInterceptor)
+            .authenticator(tokenAuthenticator)
             .apply {
                 // Only log in debug builds — disabled in release for security
                 if (BuildConfig.DEBUG) {

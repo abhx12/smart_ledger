@@ -51,3 +51,11 @@ val StatusCancelledRed = Color(0xFFB00020)    // CANCELLED
 val StatusCreatedGrey = Color(0xFF757575)     // CREATED
 val StatusActiveGreen = Color(0xFF2E7D32)     // ACTIVE
 val StatusInactiveGrey = Color(0xFF9E9E9E)    // INACTIVE
+
+// Convenient semantic aliases
+val GoldPrimary = SilkGold40
+val DebitRed = ErrorRed
+val CreditGreen = SuccessGreen
+val SilkDarkBackground = Color(0xFF0F172A)
+val SilkDarkSurface = Color(0xFF1E293B)
+val SilkDarkCard = Color(0xFF1E293B)

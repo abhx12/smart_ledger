@@ -8,42 +8,59 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 /**
+ * Interface for token management operations.
+ */
+interface TokenManager {
+    fun saveTokens(access: String, refresh: String)
+    fun getAccessToken(): String?
+    fun getRefreshToken(): String?
+    fun clearTokens()
+    fun isLoggedIn(): Boolean
+}
+
+/**
  * Secure token storage using EncryptedSharedPreferences (AES256-GCM).
  *
  * SECURITY RULE: NEVER store JWT tokens in plain SharedPreferences.
  * All data is encrypted at rest on the device.
  */
 @Singleton
-class TokenStorage @Inject constructor(@ApplicationContext private val context: Context) {
+open class TokenStorage @Inject constructor(
+    @ApplicationContext private val context: Context
+) : TokenManager {
 
-    private val masterKey = MasterKey.Builder(context)
-        .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
-        .build()
+    private val masterKey by lazy {
+        MasterKey.Builder(context)
+            .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
+            .build()
+    }
 
-    private val prefs = EncryptedSharedPreferences.create(
-        context,
-        "smartledger_secure_prefs",
-        masterKey,
-        EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-        EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
-    )
+    private val prefs by lazy {
+        EncryptedSharedPreferences.create(
+            context,
+            "smartledger_secure_prefs",
+            masterKey,
+            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+        )
+    }
 
-    fun saveTokens(access: String, refresh: String) {
+    override fun saveTokens(access: String, refresh: String) {
         prefs.edit()
             .putString(KEY_ACCESS_TOKEN, access)
             .putString(KEY_REFRESH_TOKEN, refresh)
             .apply()
     }
 
-    fun getAccessToken(): String? = prefs.getString(KEY_ACCESS_TOKEN, null)
+    override fun getAccessToken(): String? = prefs.getString(KEY_ACCESS_TOKEN, null)
 
-    fun getRefreshToken(): String? = prefs.getString(KEY_REFRESH_TOKEN, null)
+    override fun getRefreshToken(): String? = prefs.getString(KEY_REFRESH_TOKEN, null)
 
-    fun clearTokens() {
+    override fun clearTokens() {
         prefs.edit().clear().apply()
     }
 
-    fun isLoggedIn(): Boolean = getAccessToken() != null
+    override fun isLoggedIn(): Boolean = getAccessToken() != null
 
     companion object {
         private const val KEY_ACCESS_TOKEN = "access_token"
