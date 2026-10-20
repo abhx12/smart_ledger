@@ -36,6 +36,7 @@ object AppRoute {
     const val PRODUCTION_LIST = "production"
     const val PRODUCTION_DETAIL = "production/{batchId}"
     const val CREATE_PRODUCTION = "production/create"
+    const val COMPLETE_PRODUCTION = "production/{batchId}/complete"
 
     // Outsourcing
     const val OUTSOURCING_LIST = "outsourcing"
@@ -67,6 +68,7 @@ object AppRoute {
     fun recordReceipt(purchaseId: String) = "purchases/$purchaseId/receipt"
     fun orderDetail(orderId: String) = "orders/$orderId"
     fun productionDetail(batchId: String) = "production/$batchId"
+    fun completeProduction(batchId: String) = "production/$batchId/complete"
     fun outsourcingDetail(jobId: String) = "outsourcing/$jobId"
     fun partyDetail(partyId: String) = "parties/$partyId"
 }

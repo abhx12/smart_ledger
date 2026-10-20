@@ -30,6 +30,10 @@ import com.smartledger.app.feature.procurement.presentation.ui.CreatePurchaseScr
 import com.smartledger.app.feature.procurement.presentation.ui.PurchaseDetailScreen
 import com.smartledger.app.feature.procurement.presentation.ui.PurchaseListScreen
 import com.smartledger.app.feature.procurement.presentation.ui.RecordReceiptScreen
+import com.smartledger.app.feature.production.presentation.ui.CompleteProductionScreen
+import com.smartledger.app.feature.production.presentation.ui.CreateProductionBatchScreen
+import com.smartledger.app.feature.production.presentation.ui.ProductionDetailScreen
+import com.smartledger.app.feature.production.presentation.ui.ProductionListScreen
 
 
 /**
@@ -216,8 +220,41 @@ fun AppNavHost() {
             }
 
             // ── Sub-routes (added to graph so they can be navigated to) ───
-            // These will be fully implemented in Phases 8-12
-            composable(AppRoute.PRODUCTION_LIST) { /* Phase 8 */ }
+            // Production (Phase 8)
+            composable(AppRoute.PRODUCTION_LIST) {
+                ProductionListScreen(
+                    onNavigateBack = { navController.popBackStack() },
+                    onNavigateToCreateBatch = { navController.navigate(AppRoute.CREATE_PRODUCTION) },
+                    onNavigateToBatchDetail = { batchId -> navController.navigate(AppRoute.productionDetail(batchId)) }
+                )
+            }
+            composable(AppRoute.CREATE_PRODUCTION) {
+                CreateProductionBatchScreen(
+                    onNavigateBack = { navController.popBackStack() },
+                    onBatchCreated = { batchId ->
+                        navController.popBackStack()
+                        navController.navigate(AppRoute.productionDetail(batchId))
+                    }
+                )
+            }
+            composable(AppRoute.PRODUCTION_DETAIL) {
+                ProductionDetailScreen(
+                    onNavigateBack = { navController.popBackStack() },
+                    onNavigateToComplete = { batchId ->
+                        navController.navigate(AppRoute.completeProduction(batchId))
+                    }
+                )
+            }
+            composable(AppRoute.COMPLETE_PRODUCTION) {
+                CompleteProductionScreen(
+                    onNavigateBack = { navController.popBackStack() },
+                    onCompletedSuccess = {
+                        navController.popBackStack()
+                    }
+                )
+            }
+
+            // These will be fully implemented in Phases 9-12
             composable(AppRoute.OUTSOURCING_LIST) { /* Phase 9 */ }
             composable(AppRoute.WORK_RECORD_LIST) { /* Phase 10 */ }
             composable(AppRoute.RECORD_PAYMENT) { /* Phase 11 */ }
