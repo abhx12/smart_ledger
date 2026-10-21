@@ -42,10 +42,13 @@ object AppRoute {
     const val OUTSOURCING_LIST = "outsourcing"
     const val OUTSOURCING_DETAIL = "outsourcing/{jobId}"
     const val CREATE_OUTSOURCING = "outsourcing/create"
+    const val ISSUE_OUTSOURCING = "outsourcing/{jobId}/issue"
+    const val RECEIVE_OUTSOURCING = "outsourcing/{jobId}/receive"
 
     // Workforce
     const val WORK_RECORD_LIST = "workforce"
     const val CREATE_WORK_RECORD = "workforce/create"
+    const val WORKER_PAYABLES = "workforce/payables"
 
     // Finance detail
     const val RECORD_PAYMENT = "finance/payment"
@@ -70,5 +73,7 @@ object AppRoute {
     fun productionDetail(batchId: String) = "production/$batchId"
     fun completeProduction(batchId: String) = "production/$batchId/complete"
     fun outsourcingDetail(jobId: String) = "outsourcing/$jobId"
+    fun issueOutsourcing(jobId: String) = "outsourcing/$jobId/issue"
+    fun receiveOutsourcing(jobId: String) = "outsourcing/$jobId/receive"
     fun partyDetail(partyId: String) = "parties/$partyId"
 }

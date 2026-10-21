@@ -102,8 +102,8 @@ fun MoreScreen(
             title = "Production & Batch Tracking",
             subtitle = "Warping, twisting, sizing and weaving work orders",
             icon = Icons.Default.Build,
-            badge = "Phase 8",
-            badgeColor = Color(0xFF64748B),
+            badge = "ACTIVE",
+            badgeColor = GoldPrimary,
             onClick = onNavigateToProduction
         )
 
@@ -113,8 +113,8 @@ fun MoreScreen(
             title = "Outsourced Job Work",
             subtitle = "External manufacturer yarn dispatch and fabric return tracking",
             icon = Icons.Default.Handshake,
-            badge = "Phase 9",
-            badgeColor = Color(0xFF64748B),
+            badge = "ACTIVE",
+            badgeColor = GoldPrimary,
             onClick = onNavigateToOutsourcing
         )
 
@@ -124,8 +124,8 @@ fun MoreScreen(
             title = "Workforce & Labor",
             subtitle = "Attendance logs, piece-rate wages and contractor compensation",
             icon = Icons.Default.Badge,
-            badge = "Phase 10",
-            badgeColor = Color(0xFF64748B),
+            badge = "ACTIVE",
+            badgeColor = GoldPrimary,
             onClick = onNavigateToWorkforce
         )
 
@@ -135,8 +135,8 @@ fun MoreScreen(
             title = "Business Reports & Analytics",
             subtitle = "Outstanding receivables, supplier payables, and profitability",
             icon = Icons.Default.Assessment,
-            badge = "Phase 12",
-            badgeColor = Color(0xFF64748B),
+            badge = "ACTIVE",
+            badgeColor = GoldPrimary,
             onClick = onNavigateToReports
         )
 

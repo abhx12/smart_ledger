@@ -1,4 +1,4 @@
-﻿# SmartLedger — Developer B: Frontend Foundation Implementation Plan
+# SmartLedger — Developer B: Frontend Foundation Implementation Plan
 
 **Branch:** `feature/dev-b/frontend-foundation`
 **Developer:** B (Kotlin Android / Frontend)
@@ -826,65 +826,65 @@ Database tables:
 ## Definition of Done
 
 Foundation:
-- [ ] Android Studio project builds successfully
-- [ ] Hilt DI configured end-to-end
-- [ ] Retrofit + AuthInterceptor working
-- [ ] EncryptedSharedPreferences token storage working
-- [ ] Material3 theme defined
-- [ ] NavHost with all routes defined
+- [x] Android Studio project builds successfully
+- [x] Hilt DI configured end-to-end
+- [x] Retrofit + AuthInterceptor working
+- [x] EncryptedSharedPreferences token storage working
+- [x] Material3 theme defined
+- [x] NavHost with all routes defined
 
 Auth:
-- [ ] Login screen (username + password + spinner)
-- [ ] Splash screen with auto-login check
-- [ ] JWT saved securely to EncryptedSharedPreferences
-- [ ] 401 auto-refresh -> retry
-- [ ] Logout clears tokens and goes to Login
+- [x] Login screen (username + password + spinner)
+- [x] Splash screen with auto-login check
+- [x] JWT saved securely to EncryptedSharedPreferences
+- [x] 401 auto-refresh -> retry
+- [x] Logout clears tokens and goes to Login
 
 Dashboard:
-- [ ] All 9 KPIs displayed
-- [ ] Indian currency and weight formatting
-- [ ] Pull-to-refresh working
+- [x] All 9 KPIs displayed
+- [x] Indian currency and weight formatting
+- [x] Pull-to-refresh working
 
 Parties:
-- [ ] Tabbed list (Customer / Supplier / Manufacturer / Worker)
-- [ ] Create party form (phone optional)
-- [ ] Party detail screen
+- [x] Tabbed list (Customer / Supplier / Manufacturer / Worker)
+- [x] Create party form (phone optional)
+- [x] Party detail screen
 
 Procurement:
-- [ ] Purchase list with status filter
-- [ ] Create purchase form (CASH/CREDIT)
-- [ ] Record material receipt
-- [ ] Purchase detail with receipt history
+- [x] Purchase list with status filter
+- [x] Create purchase form (CASH/CREDIT)
+- [x] Record material receipt
+- [x] Purchase detail with receipt history
 
 Inventory:
-- [ ] Stock summary (read-only)
-- [ ] Movement history
+- [x] Stock summary (read-only)
+- [x] Movement history
 
 Orders:
-- [ ] Order list
-- [ ] Create order with multiple items
-- [ ] Locked order warning
+- [x] Order list
+- [x] Create order with multiple items
+- [x] Locked order warning
 
 Production:
-- [ ] Create batch
-- [ ] Start + Complete with equation validation
+- [x] Create batch
+- [x] Start + Complete with equation validation
 
 Outsourcing:
-- [ ] Create job, issue material, receive output
-- [ ] External WIP visible
+- [x] Create job, issue material, receive output
+- [x] External WIP visible
 
 Workforce:
-- [ ] Create work record (WARPING kg / ROLLING hours)
-- [ ] Worker payable screen
+- [x] Create work record (WARPING kg / ROLLING hours)
+- [x] Worker payable screen
 
 Finance:
-- [ ] Record payment with allocations
-- [ ] Record expense
-- [ ] Account list + transfer
+- [x] Record payment with allocations
+- [x] Record expense
+- [x] Account list + transfer
 
 Reports:
-- [ ] Customer outstanding report
-- [ ] Supplier payables report
+- [x] Customer outstanding report
+- [x] Supplier payables report
 
 ---
 
